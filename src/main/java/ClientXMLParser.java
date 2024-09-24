@@ -18,13 +18,17 @@ import java.util.List;
 
 import static javax.swing.text.html.CSS.getAttribute;
 
-@NoArgsConstructor
 public class ClientXMLParser implements AgencyFileHandler <Client> {
+    private String pathToFile;
+
+    public ClientXMLParser(String pathToFile) {
+        this.pathToFile = pathToFile;
+    }
 
     @Override
-    public List<Client> parseAll(String pathfile) throws ParserConfigurationException, IOException, SAXException, ParseException {
+    public List<Client> parseAll() throws ParserConfigurationException, IOException, SAXException, ParseException {
         List<Client> clients = new ArrayList<>();
-        File file = new File(pathfile);
+        File file = new File(pathToFile);
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
         Document document = documentBuilder.parse(file);

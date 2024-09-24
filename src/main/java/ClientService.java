@@ -1,4 +1,3 @@
-import org.junit.Test;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -8,9 +7,14 @@ import java.util.List;
 
 public class ClientService {
 
-    ClientXMLParser parser = new ClientXMLParser();
+    private ClientXMLParser parser;
+
+    public ClientService(ClientXMLParser parser) {
+        this.parser = parser;
+    }
+
     public Client findByName(String name) throws IOException, ParserConfigurationException, ParseException, SAXException {
-        List<Client> clients = parser.parseAll("C:\\Users\\modar\\OneDrive\\Рабочий стол\\travelAgency.xml");
+        List<Client> clients = parser.parseAll();
         for (Client client : clients) {
             if (clients.contains(name)) {
                 return client;
@@ -21,7 +25,7 @@ public class ClientService {
 
 
     public Client findByID(String clientID) throws IOException, ParserConfigurationException, ParseException, SAXException {
-        List<Client> clients = parser.parseAll("C:\\Users\\modar\\OneDrive\\Рабочий стол\\travelAgency.xml");
+        List<Client> clients = parser.parseAll();
         for (Client client : clients) {
             if (clients.contains(clientID)) {
                 return client;
@@ -31,7 +35,7 @@ public class ClientService {
     }
 
     public Client findByPhone(String phone) throws IOException, ParserConfigurationException, ParseException, SAXException {
-        List<Client> clients = parser.parseAll("C:\\Users\\modar\\OneDrive\\Рабочий стол\\travelAgency.xml");
+        List<Client> clients = parser.parseAll();
         for (Client client : clients) {
             if (clients.contains(phone)) {
                 return client;
@@ -41,7 +45,7 @@ public class ClientService {
     }
 
     public Client findByEmail (String email) throws IOException, ParserConfigurationException, ParseException, SAXException {
-        List<Client> clients = parser.parseAll("C:\\Users\\modar\\OneDrive\\Рабочий стол\\travelAgency.xml");
+        List<Client> clients = parser.parseAll();
         for (Client client : clients) {
             if (clients.contains(email)) {
                 return client;

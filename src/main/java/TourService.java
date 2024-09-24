@@ -8,10 +8,10 @@ import java.util.List;
 
 public class TourService {
 
-    TourXMLParser parser = new TourXMLParser();
+    private TourXMLParser parser = new TourXMLParser();
 
     public Tour findById(String tourID) throws IOException, ParserConfigurationException, ParseException, SAXException {
-        List<Tour> tours = parser.parseAll("C:\\Users\\modar\\OneDrive\\Рабочий стол\\travelAgency.xml");
+        List<Tour> tours = parser.parseAll();
         for (Tour tour : tours) {
             if (tours.contains(tourID)) {
                 return tour;
@@ -21,7 +21,7 @@ public class TourService {
     }
 
     public Tour findByDestination(String destination) throws IOException, ParserConfigurationException, ParseException, SAXException {
-        List<Tour> tours = parser.parseAll("C:\\Users\\modar\\OneDrive\\Рабочий стол\\travelAgency.xml");
+        List<Tour> tours = parser.parseAll();
         for (Tour tour : tours) {
             if (tours.contains(destination)) {
                 return tour;
@@ -31,7 +31,7 @@ public class TourService {
     }
 
     public Tour findByDate(Date dateStart) throws IOException, ParserConfigurationException, ParseException, SAXException {
-        List<Tour> tours = parser.parseAll("C:\\Users\\modar\\OneDrive\\Рабочий стол\\travelAgency.xml");
+        List<Tour> tours = parser.parseAll();
         for (Tour tour : tours) {
             if (tours.contains(dateStart)) {
                 return tour;
@@ -41,7 +41,7 @@ public class TourService {
     }
 
     public Tour findByDate(Date dateStart, Date dateEnd) throws IOException, ParserConfigurationException, ParseException, SAXException {
-        List<Tour> tours = parser.parseAll("C:\\Users\\modar\\OneDrive\\Рабочий стол\\travelAgency.xml");
+        List<Tour> tours = parser.parseAll();
         for (Tour tour : tours) {
             if (tours.contains(dateStart) && tours.contains(dateEnd)) {
                 return tour;
@@ -51,7 +51,7 @@ public class TourService {
     }
 
     public Tour findByGuide(Guide guide) throws IOException, ParserConfigurationException, ParseException, SAXException {
-        List<Tour> tours = parser.parseAll("C:\\Users\\modar\\OneDrive\\Рабочий стол\\travelAgency.xml");
+        List<Tour> tours = parser.parseAll();
         for (Tour tour : tours) {
             if (tours.contains(guide)) {
                 return tour;

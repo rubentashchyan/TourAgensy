@@ -1,5 +1,4 @@
 import lombok.NoArgsConstructor;
-import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -12,7 +11,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,13 +19,16 @@ import java.util.List;
 
 @NoArgsConstructor
 public class TourXMLParser implements AgencyFileHandler <Tour>{
+    private String pathToFile;
 
-
+    public TourXMLParser(String pathToFile) {
+        this.pathToFile = pathToFile;
+    }
 
     @Override
-    public List<Tour>  parseAll(String pathFile) throws IOException, SAXException, ParserConfigurationException, ParseException {
+    public List<Tour>  parseAll() throws IOException, SAXException, ParserConfigurationException, ParseException {
         List<Tour> tours = new ArrayList<>();
-        File file = new File(pathFile);
+        File file = new File(pathToFile);
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
         Document document = documentBuilder.parse(file);
@@ -96,7 +97,7 @@ public class TourXMLParser implements AgencyFileHandler <Tour>{
 
         return new ArrayList<>();
     }
-    @Test
+
     @Override
     public void save(Tour entity) throws IOException {
         // TODO метод должен изменять файл
@@ -120,8 +121,6 @@ public class TourXMLParser implements AgencyFileHandler <Tour>{
       writer.write("<language>" + entity.getGuide().getName() + "</language>\r\n");
       writer.write("</guide>");
       writer.write(" </tour>");
-
-
     }
 
 
