@@ -1,3 +1,5 @@
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -5,7 +7,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
-
+@AllArgsConstructor
+@NoArgsConstructor
 public class TourService {
 
     private TourXMLParser parser = new TourXMLParser();

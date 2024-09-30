@@ -1,3 +1,4 @@
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Data
 @NoArgsConstructor
 public class TourXMLParser implements AgencyFileHandler <Tour>{
     private String pathToFile;

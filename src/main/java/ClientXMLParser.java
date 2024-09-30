@@ -1,3 +1,4 @@
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -15,15 +16,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+import java.io.FileWriter;
 import static javax.swing.text.html.CSS.getAttribute;
-
+@AllArgsConstructor
 public class ClientXMLParser implements AgencyFileHandler <Client> {
     private String pathToFile;
 
-    public ClientXMLParser(String pathToFile) {
-        this.pathToFile = pathToFile;
-    }
+
 
     @Override
     public List<Client> parseAll() throws ParserConfigurationException, IOException, SAXException, ParseException {
@@ -45,7 +44,7 @@ public class ClientXMLParser implements AgencyFileHandler <Client> {
                 NodeList bookingNode = ((Element) clientNode).getElementsByTagName("booking");
                 ArrayList <Booking> bookings = new ArrayList<>();
                 SimpleDateFormat dateFormat = new  SimpleDateFormat("yyyy-MM-DD");
-                for (int j = 0; j < nodeList.getLength(); j++) {
+                for (int j = 0; j < bookingNode.getLength(); j++) {
                     Element bookingElement = (Element) bookingNode.item(j);
                     String tourID = bookingElement.getAttribute("tourID");
                     Date date = dateFormat.parse(bookingElement.getAttribute("date"));
@@ -61,7 +60,24 @@ public class ClientXMLParser implements AgencyFileHandler <Client> {
     }
 
     @Override
-    public void save(Client entity) {
+    public void save(Client entity) throws IOException {
+        File file = new File("C:\\Users\\modar\\OneDrive\\Рабочий стол\\travelAgency.xml");
+        file.setWritable(true);
+        FileWriter writer = new FileWriter(file, true);
+
+        writer.write("<client id=\"" + entity.getClientID() + "\">\r\n");
+        writer.write("<name>" + entity.getName() + "</name>\r\n");
+        writer.write("<email>" + entity.getEmail() + "</email>\r\n");
+        writer.write("<phone>" + entity.getPhone() + "</phone>\r\n");
+        writer.write("<bookings>\r\n");
+        for (Booking booking : entity.getBookings()) {
+            writer.write("<booking tourId=\"" + booking.getTourID() + "\" date=\"" + booking.getDate() + "\" />\r\n");
+        }
+        writer.write("</bookings>\r\n");
+
+        writer.write("</client>\r\n");
+
+
 
     }
 
